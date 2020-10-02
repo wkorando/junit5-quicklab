@@ -26,6 +26,7 @@ public class RoomServiceImplTest {
 
 	@Test
 	public void testFindByValidRoomType() {
+		System.out.println("testFindByValidRoomType");
 		RoomRepo repo = mock(RoomRepo.class);
 		RoomServiceImpl service = new RoomServiceImpl(repo, roomTypes);
 		when(repo.findRoomsByRoomType("Single")).thenReturn(Arrays.asList(//
@@ -37,6 +38,7 @@ public class RoomServiceImplTest {
 
 	@Test
 	public void testFindByInvalidRoomType() {
+		System.out.println("testFindByInvalidRoomType");
 		RoomRepo repo = mock(RoomRepo.class);
 		RoomServiceImpl service = new RoomServiceImpl(repo, roomTypes);
 		verify(repo, times(0)).findRoomsByRoomType(any());
@@ -47,6 +49,7 @@ public class RoomServiceImplTest {
 
 	@Test(expected = RoomServiceException.class)
 	public void testFindByNullRoomType() {
+		System.out.println("testFindByNullRoomType");
 		RoomRepo repo = mock(RoomRepo.class);
 		RoomServiceImpl service = new RoomServiceImpl(repo, roomTypes);
 		verify(repo, times(0)).findRoomsByRoomType(any());
@@ -60,6 +63,7 @@ public class RoomServiceImplTest {
 
 	@Test
 	public void testAddRoom() {
+		System.out.println("testAddRoom");
 		RoomRepo repo = mock(RoomRepo.class);
 		when(repo.save(any())).thenReturn(new Room(1L, "100", "Single", new BigDecimal(149.99)));
 		RoomServiceImpl service = new RoomServiceImpl(repo, roomTypes);

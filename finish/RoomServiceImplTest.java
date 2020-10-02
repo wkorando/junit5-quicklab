@@ -41,10 +41,9 @@ public class RoomServiceImplTest {
 
 	@DisabledIfSystemProperty(named = "junit5Disabled", matches = "true")
 	@Test
-//	@Order(1)
-	public void testFindByValidRoomType() {
+	@Order(1)
+	public void testFindByValidRoomType(@Mock RoomRepo repo) {
 		System.out.println("testFindByValidRoomType");
-		RoomRepo repo = mock(RoomRepo.class);
 		RoomServiceImpl service = new RoomServiceImpl(repo, roomTypes);
 		when(repo.findRoomsByRoomType("Single")).thenReturn(Arrays.asList(//
 				new Room(1L, "100", "Single", new BigDecimal(145.99))));
@@ -77,7 +76,7 @@ public class RoomServiceImplTest {
 	}
 
 	@Test
-//	@Order(Integer.MAX_VALUE)
+	@Order(Integer.MAX_VALUE)
 	public void testAddRoom() {
 		System.out.println("testAddRoom");
 		RoomRepo repo = mock(RoomRepo.class);
