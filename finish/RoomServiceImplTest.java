@@ -1,4 +1,4 @@
-package com.ibm.developer.junit5quicklab.service.impl;
+package com.ibm.developer.junit5quicklab;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -21,15 +21,19 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.condition.DisabledIfSystemProperty;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.migrationsupport.rules.EnableRuleMigrationSupport;
 import org.junit.rules.ExpectedException;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.ibm.developer.junit5quicklab.RoomServiceException;
 import com.ibm.developer.junit5quicklab.model.Room;
 import com.ibm.developer.junit5quicklab.repo.RoomRepo;
+import com.ibm.developer.junit5quicklab.service.impl.RoomServiceImpl;
 
 @TestMethodOrder(OrderAnnotation.class)
 @EnableRuleMigrationSupport
+@ExtendWith(MockitoExtension.class)
 public class RoomServiceImplTest {
 	private List<String> roomTypes = Arrays.asList("Single", "Double", "Suite");
 	@Rule
@@ -37,7 +41,7 @@ public class RoomServiceImplTest {
 
 	@DisabledIfSystemProperty(named = "junit5Disabled", matches = "true")
 	@Test
-	@Order(1)
+//	@Order(1)
 	public void testFindByValidRoomType() {
 		System.out.println("testFindByValidRoomType");
 		RoomRepo repo = mock(RoomRepo.class);
@@ -73,7 +77,7 @@ public class RoomServiceImplTest {
 	}
 
 	@Test
-	@Order(Integer.MAX_VALUE)
+//	@Order(Integer.MAX_VALUE)
 	public void testAddRoom() {
 		System.out.println("testAddRoom");
 		RoomRepo repo = mock(RoomRepo.class);
